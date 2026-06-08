@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小升初源流适配度测试</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --warn: #ef4444;
+            --warn-bg: #fef2f2;
+            --success: #10b981;
+            --success-bg: #ecfdf5;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 0 auto;
+            padding-bottom: 60px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border);
+        }
+
+        .question-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #334155;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-label:hover {
+            background-color: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        .option-label input[type="radio"] {
+            margin-top: 4px;
+            margin-right: 12px;
+            accent-color: var(--primary);
+        }
+
+        .option-text {
+            font-size: 14px;
+            color: #475569;
+        }
+
+        .option-label.selected {
+            border-color: var(--primary);
+            background-color: #eff6ff;
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-hover);
+        }
+
+        #result-section {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .result-title {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .alert-box {
+            background-color: var(--warn-bg);
+            border-left: 5px solid var(--warn);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .alert-box h3 {
+            margin: 0 0 10px 0;
+            color: #991b1b;
+            font-size: 16px;
+        }
+
+        .success-box {
+            background-color: var(--success-bg);
+            border-left: 5px solid var(--success);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .success-box h3 {
+            margin: 0 0 10px 0;
+            color: #065f46;
+            font-size: 18px;
+        }
+
+        .advice-list {
+            padding-left: 20px;
+            margin: 10px 0 0 0;
+            font-size: 14px;
+            color: #334155;
+        }
+
+        .advice-list li {
+            margin-bottom: 8px;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>🌐 升学源流适配度——网页测试题</h1>
+        <p>专业诊断：结合独中 60 分及格线与孩子特质，锁定最适合的赛道</p>
+    </div>
+
+    <form id="quiz-form">
+        <!-- Q1 -->
+        <div class="card">
+            <div class="question-title">Q1. 关于孩子的马来文（Bahasa Melayu）基础，目前最真实的水平是？</div>
+            <div class="options">
+                <label class="option-label"><input type="radio" name="q1" value="A" required><span class="option-text">A. 挺扎实的。听、说、读、写都没大问题，能应付非华语环境的交流 and 学习。</span></label>
+                <label class="option-label"><input type="radio" name="q1" value="B"><span class="option-text">B. 属于“中等生”。能应付基本考试，关面对长篇国文理解或写作时会感到吃力。</span></label>
+                <label class="option-label"><input type="radio" name="q1" value="C"><span class="option-text">C. 相当弱。对马文有抗拒心理，基础不稳，听到国语或看到长篇国文会感到焦虑。</span></label>
+            </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="card">
+            <div class="question-title">Q2. 如果孩子目前基础不算太扎实，面对独中严苛的 60 分及格线，初一可能面临“成绩红字不及格”甚至“留级/劝退风险”，您的真实心态是？</div>
+            <div class="options">
+                <label class="option-label"><input type="radio" name="q2" value="A" required><span class="option-text">A. 拼一把！哪怕每天补习到深夜、顶着随时留级的压力，也要硬碰硬死磕独中。</span></label>
+                <label class="option-label"><input type="radio" name="q2" value="B"><span class="option-text">B. 非常担忧。孩子自尊心强，如果天天不及格、面临留级劝退，我害怕他会彻底厌学、自暴自弃。</span></label>
+                <label class="option-label"><input type="radio" name="q2" value="C"><span class="option-text">C. 理性止损。选择及格线和升级机制更弹性的国中/international school，把预算和精力留在课后高质量补习上。</span></label>
+            </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="card">
+            <div class="question-title">Q3. 对于网络上或传闻中“国中环境复杂、纪律较松”的现象，您的真实想法是？</div>
+            <div class="options">
+                <label class="option-label"><input type="radio" name="q3" value="A" required><span class="option-text">A. 比较理智。我认为哪里的学校都有好班和坏班，核心看孩子的自律、朋友圈和家庭教育。</span></label>
+                <label class="option-label"><input type="radio" name="q3" value="B"><span class="option-text">B. 非常担心。觉得孩子定力不够，害怕他被带坏或因为语言不通而边缘化。</span></label>
+                <label class="option-label"><input type="radio" name="q3" value="C"><span class="option-text">C. 只要学校能提供良好的英语或多元文化环境，相比起严格的纪律，我更看重学校的开放与自由度。</span></label>
+            </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="card">
+            <div class="question-title">Q4. 在学校的校规、纪律和课外活动（联课）方面，您觉得哪种最适合孩子？</div>
+            <div class="options">
+                <label class="option-label"><input type="radio" name="q4" value="A" required><span class="option-text">A. 纪律严明、校规严格，且必须积极参与大型社团活动（如华乐、制服团体），能培养集体纪律。</span></label>
+                <label class="option-label"><input type="radio" name="q4" value="B"><span class="option-text">B. 纪律适中即可，不希望校规和社团活动过于沉重，导致孩子放学后或周末精疲力竭。</span></label>
+                <label class="option-label"><input type="radio" name="q4" value="C"><span class="option-text">C. 喜欢自由、有创意的活动（如coding、戏剧），抗拒传统严厉的管教，喜欢被赞美和鼓励。</span></label>
+            </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="card">
+            <div class="question-title">Q5. 提到独中的“60分及格线”和“留级制度”，您的认知更偏向哪一种？</div>
+            <div class="options">
+                <label class="option-label"><input type="radio" name="q5" value="A" required><span class="option-text">A. 了解并接受。独中是宽进严出，严格是好事，真跟不上留级一到两年打好基础也无妨。</span></label>
+                <label class="option-label"><input type="radio" name="q5" value="B"><span class="option-text">B. 有点担忧。万一孩子初一、初二真的因为不及格而被劝退转校，对孩子的打击太大了。</span></label>
+                <label class="option-label"><input type="radio" name="q5" value="C"><span class="option-text">C. 不太认同。我认为不应该用考试分数来决定孩子的去留。</span></label>
+            </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="card">
+            <div class="question-title">Q6. 面对家庭的“教育资金预算”，您的规划是？</div>
+            <div class="options">
+                <label class="option-label"><input type="radio" name="q6" value="A" required><span class="option-text">A. 务实/高性价比。倾向于免学费或极低学费的学校，把预算留给未来的大学。</span></label>
+                <label class="option-label"><input type="radio" name="q6" value="B"><span class="option-text">B. 中等预算。每个月可以承担几百令吉的学费（如独中或部分私立/文凭中心）。</span></label>
+                <label class="option-label"><input type="radio" name="q6" value="C"><span class="option-text">C. 预算充足。愿意且有能力投资在学费高昂的国际教育上。</span></label>
+            </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="card">
+            <div class="question-title">Q7. 对于孩子未来的升学大方向，您目前最倾向于哪条路线？</div>
+            <div class="options">
+                <label class="option-label"><input type="radio" name="q7" value="A" required><span class="option-text">A. 参加大马教育文凭（SPM），走本地主流路线（Matriculation/STPM/本地公私立大学），性价比高。</span></label>
+                <label class="option-label"><input type="radio" name="q7" value="B"><span class="option-text">B. 挑战独中统考（UEC），未来考虑留台、留华或用统考成绩直接申请国内外大学。</span></label>
+                <label class="option-label"><input type="radio" name="q7" value="C"><span class="option-text">C. 尽早与国际接轨，考取 IGCSE 证书，未来直接申请海外名校。</span></label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit">生成专属升学诊断报告</button>
+    </form>
+
+    <!-- 结果展示区 -->
+    <div id="result-section">
+        <div class="result-title">📊 孩子升学源流诊断结果</div>
+        <div id="result-content"></div>
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'}); location.reload();" class="btn-submit" style="background-color: #64748b; margin-top: 20px;">重新测试</button>
+    </div>
+
+    <div class="footer-note">
+        * 注：测试结果结合孩子学习特质、抗压能力与财务规划综合评估，仅供家庭理性决策参考。
+    </div>
+</div>
+
+<script>
+    // 动态高亮选中样式
+    document.querySelectorAll('.option-label input').forEach(input => {
+        input.addEventListener('change', function() {
+            const name = this.getAttribute('name');
+            document.querySelectorAll(`input[name="${name}"]`).forEach(radio => {
+                radio.parentElement.classList.remove('selected');
+            });
+            if (this.checked) {
+                this.parentElement.classList.add('selected');
+            }
+        });
+    });
+
+    // 诊断算法
+    document.getElementById('quiz-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const q1 = document.querySelector('input[name="q1"]:checked').value;
+        const q2 = document.querySelector('input[name="q2"]:checked').value;
+        const q3 = document.querySelector('input[name="q3"]:checked').value;
+        const q4 = document.querySelector('input[name="q4"]:checked').value;
+        const q5 = document.querySelector('input[name="q5"]:checked').value;
+        const q6 = document.querySelector('input[name="q6"]:checked').value;
+        const q7 = document.querySelector('input[name="q7"]:checked').value;
+
+        const resultContent = document.getElementById('result-content');
+        
+        // 🚨 【安全拦截逻辑】：只要家长害怕红字不及格(Q2=B) 或 极度担忧劝退打击(Q5=B)，且家庭预算不是顶级富裕(Q6!=C)
+        if ((q2 === 'B' || q5 === 'B') && q6 !== 'C') {
+            resultContent.innerHTML = `
+                <div class="alert-box">
+                    <h3>⚠️ 深度安全预警：【理智排雷 · 避开高风险独中红线】</h3>
+                    <p><strong>现状诊断：</strong> 亲爱的家长，测试显示您对独中严苛的 <strong>60 分绝对及格线及留级/劝退机制</strong> 存在极大的心理担忧。同时，您的家庭教育资金规划偏向于务实理智。</p>
+                    <p style="color: var(--warn); font-weight: bold;">核心忠告：千万不要为了盲目跟风而硬把孩子塞进独中！</p>
+                    <p>在华小考 60 分或许安全，但到了独中， 60 分就是生死线。如果孩子基础不够扎实、自尊心强，初一、初二天天面对成绩单红字或面临留级，极易导致心理全面崩溃或产生严重的厌学情绪。</p>
+                    <p><strong>最务实、稳健的替代路线：【国中路线 + 课后强效同步补习】</strong></p>
+                    <ul class="advice-list">
+                        <li><strong>① 弹性应对：</strong>国民中学（SMK）或国民型华中（SMJK）的及格和升级机制更具弹性，不会用冷酷的分数对孩子进行“一刀切”的去留宣判，能极好地保护孩子的自信心。</li>
+                        <li><strong>② 精准投资：</strong>将省下来的巨额独中学费，转化为课后高质量的同步补习资金。利用补习中心的专业系统（如国中 BM、Sejarah、Sains 强化班），用孩子听得懂的华语逻辑攻克中学课本，稳扎稳打夯实基础，未来同样能直通 SPM 拿全 A 赛道！</li>
+                    </ul>
+                </div>
+            `;
+            showResult();
+            return;
+        }
+
+        // 📊 积分规则定义
+        let scores = { Independent: 0, Government: 0, International: 0 };
+
+        // Q1 马文基础
+        if (q1 === 'A') { scores.Government += 2; scores.Independent += 1; }
+        if (q1 === 'B') { scores.Independent += 2; scores.Government += 1; }
+        if (q1 === 'C') { scores.International += 3; }
+
+        // Q2 留级风险心态
+        if (q2 === 'A') { scores.Independent += 3; }
+        if (q2 === 'B') { scores.Government += 2; }
+        if (q2 === 'C') { scores.International += 2; scores.Government += 1; }
+
+        // Q3 国中风气顾虑
+        if (q3 === 'A') { scores.Government += 3; }
+        if (q3 === 'B') { scores.Independent += 2; }
+        if (q3 === 'C') { scores.International += 3; }
+
+        // Q4 校规社团风格
+        if (q4 === 'A') { scores.Independent += 3; }
+        if (q4 === 'B') { scores.Government += 2; }
+        if (q4 === 'C') { scores.International += 3; }
+
+        // Q5 60分机制认同
+        if (q5 === 'A') { scores.Independent += 3; }
+        if (q5 === 'B') { scores.Government += 2; }
+        if (q5 === 'C') { scores.International += 2; }
+
+        // Q6 资金链（硬核过滤器）
+        if (q6 === 'A') { scores.Government += 4; }
+        if (q6 === 'B') { scores.Independent += 3; scores.Government += 1; }
+        if (q6 === 'C') { scores.International += 5; }
+
+        // Q7 未来大目标
+        if (q7 === 'A') { scores.Government += 3; }
+        if (q7 === 'B') { scores.Independent += 3; }
+        if (q7 === 'C') { scores.International += 3; }
+
+        // 财务纠偏
+        if (scores.International > scores.Independent && scores.International > scores.Government && q6 === 'A') {
+            scores.Government += 10;
+        }
+
+        // 获取最高分赛道
+        let highest = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+
+        let resultHTML = '';
+        if (highest === 'Independent') {
+            resultHTML = `
+                <div class="success-box" style="border-left-color: #8b5cf6;">
+                    <h3 style="color: #6d28d9;">🏆 结果：【独中抗压奋斗型】(UEC Track)</h3>
+                    <p><strong>核心特质：</strong>意志坚定、抗压能力强、高度认同中华传统文化与严明纪律。</p>
+                    <p><strong>深度解析：</strong>您和孩子完全理解并接受独中<strong>“60分及格、宽进严出”</strong>的硬性规则。高强度的学术考核与大容量的联课活动非但不会压垮孩子，反而会成为 TA 蜕变的催化剂。这条路线适合目标明确、意靠统考（UEC）申请国内外大学的家庭。</p>
+                </div>`;
+        } else if (highest === 'International') {
+            resultHTML = `
+                <div class="success-box" style="border-left-color: #f59e0b;">
+                    <h3 style="color: #b45309;">🏆 结果：【国际视野自由型】(IGCSE Track)</h3>
+                    <p><strong>核心特质：</strong>追求思维开放、抗拒死记硬背、崇尚自我个性发挥、家庭预算充足。</p>
+                    <p><strong>深度解析：</strong>孩子完全不需要在“不到60分就被全盘否定”的传统应试教育里痛苦挣扎。在国际学校（或英式文凭中心）多元化项目评估与全英文环境中，孩子的创意（如编程、戏剧）能得到最大程度的释放，无缝衔接海外名校升学路径。</p>
+                </div>`;
+        } else {
+            resultHTML = `
+                <div class="success-box">
+                    <h3>🏆 结果：【主流国中逆袭型】(SPM Track)</h3>
+                    <p><strong>核心特质：</strong>务实高效、追求高性价比、懂得借力打力。</p>
+                    <p><strong>深度解析：</strong>大马主流的国中（SMK）或华中（SMJK）是最稳健、也是最安全的赛道。这里的升级机制弹性大，能给孩子留出充足的进步缓冲期，避开了独中 60 分留级红线的残酷打击。</p>
+                    <p><strong>逆袭战略（补习中心安全网）：</strong></p>
+                    <ul class="advice-list">
+                        <li><strong>1. 学习风气与自律：</strong>国中的学习环境更依赖家庭的引导与孩子的自律。只要我们在课后给予足够的学术支持，孩子依然能保持优秀的学习状态。</li>
+                        <li><strong>2. 资金降维打击：</strong>免去的昂贵独中/国际学校学费，可以精准转化为课后高质量的同步补习基金。由补习中心用孩子熟悉的华语逻辑，彻底攻克大马文版 BM、Sejarah、Sains 等核心科目，在 SPM 考试中扎实突破，直通本地公私立大学！</li>
+                    </ul>
+                </div>`;
+        }
+
+        resultContent.innerHTML = resultHTML;
+        showResult();
+    });
+
+    function showResult() {
+        document.getElementById('quiz-form').style.display = 'none';
+        document.getElementById('result-section').style.display = 'block';
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+</script>
+
+</body>
+</html>
